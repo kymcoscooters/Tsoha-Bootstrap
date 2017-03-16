@@ -2,7 +2,7 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.holmbrob.users.cs.helsinki.fi/tsoha)
+* [Linkki sovellukseeni](https://holmbrob.users.cs.helsinki.fi/tsoha)
 * [Linkki dokumentaatiooni](https://github.com/kymcoscooters/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
 ## Työn aihe
