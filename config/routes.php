@@ -19,3 +19,7 @@ HelloWorldController::userpage();
 $routes->get('/login', function() {
 HelloWorldController::login();
 });
+
+$routes->get('/newuser', function() {
+HelloWorldController::newuser();
+});
