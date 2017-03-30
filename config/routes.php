@@ -13,7 +13,7 @@ $routes->get('/frontpage', function() {
 });
 
 $routes->get('/userpage', function() {
-HelloWorldController::userpage();
+    UserController::userpage();
 });
 
 $routes->get('/login', function() {
