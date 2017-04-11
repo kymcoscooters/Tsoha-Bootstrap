@@ -16,7 +16,7 @@ class UserController extends BaseController {
         } else {
             $_SESSION['user'] = $user->id;
 
-            Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $user->name . '!'));
+            Redirect::to('/userpage');
         }
     }
 
@@ -29,6 +29,16 @@ class UserController extends BaseController {
     
     public static function frontpage() {
         View::make('frontpage.html');
+    }
+    
+    public static function newuser() {
+        View::make('newuser.html');
+    }
+    
+    public static function add_new_user() {
+        $params = $_POST;
+        
+        User::save(array('username' => $params['username'], 'password' => $params['password']));
     }
 
 }

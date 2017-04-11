@@ -21,5 +21,9 @@ $routes->post('/login', function() {
 });
 
 $routes->get('/newuser', function() {
-    HelloWorldController::newuser();
+    UserController::newuser();
+});
+
+$routes->post('/newuser', function() {
+    UserController::add_new_user();
 });

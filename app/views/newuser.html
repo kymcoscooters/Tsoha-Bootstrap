@@ -2,23 +2,23 @@
 {% block content %}
   <h1>Luo käyttäjä</h1>
 
-  <form>
+  <form method="post" action="{{base_path}}/newuser">
     <!-- Tekstikenttä käyttäjätunnukselle -->
     <div class="form-group">
       <label>Käyttäjätunnus</label>
-      <input type="text" class="form-control">
+      <input type="text" class="form-control" name="username">
     </div>
 
     <!-- Salasanakenttä salasanalle -->
     <div class="form-group">
       <label>Salasana</label>
-      <input type="password" class="form-control">
+      <input type="password" class="form-control" name="password">
     </div>
     
     <!-- Salasana uudestaan -->
     <div class="form-group">
         <label>Salasana uudestaan</label>
-        <input type="password" class="form-control">
+        <input type="password" class="form-control" name="passwordagain">
     </div>
     
     <button type="submit" class="btn btn-primary">Luo käyttäjä</button>

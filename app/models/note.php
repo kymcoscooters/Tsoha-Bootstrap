@@ -30,6 +30,26 @@ class Note extends BaseModel {
         return $notes;
     }
     
+    public static function all_user($user_id) {
+        $query = DB::connection()->prepare('SELECT * FROM Note WHERE user_id = :id');
+        
+        $query->execute(array('id' => $user_id));
+        
+        $rows = $query->fetchAll();
+        
+        $notes = array();
+        
+        foreach ($rows as $row) {
+            $notes[] = new Note(array(
+                'id' => $row['id'],
+                'user_id' => $row['user_id'],
+                'header' => $row['header'],
+                'text' => $row['text']
+            ));
+        }
+        
+        return $notes;
+    }
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Note WHERE id = :id LIMIT 1;');
         $query->execute(array('id' => $id));
@@ -55,7 +75,4 @@ class Note extends BaseModel {
         $this->id = $row['id'];
     }
     
-    public function update() {
-        
-    }
 }
