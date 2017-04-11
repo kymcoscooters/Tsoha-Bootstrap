@@ -1,15 +1,11 @@
 <?php
 
 $routes->get('/', function() {
-    HelloWorldController::index();
+    UserController::frontpage();
 });
 
 $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
-});
-
-$routes->get('/frontpage', function() {
-    HelloWorldController::frontpage();
 });
 
 $routes->get('/userpage', function() {
@@ -17,9 +13,13 @@ $routes->get('/userpage', function() {
 });
 
 $routes->get('/login', function() {
-HelloWorldController::login();
+    UserController::login();
+});
+
+$routes->post('/login', function() {
+    UserController::handle_login();
 });
 
 $routes->get('/newuser', function() {
-HelloWorldController::newuser();
+    HelloWorldController::newuser();
 });

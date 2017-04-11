@@ -54,4 +54,8 @@ class Note extends BaseModel {
         
         $this->id = $row['id'];
     }
+    
+    public function update() {
+        
+    }
 }

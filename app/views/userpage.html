@@ -15,10 +15,10 @@ ja uusi lista-nappi luo uuden listan</h4>
 <br>
 <h6>Aiemmin luodut muistiinpanot ja listat</h6>
 <ul class="list-unstyled">
-    {% for note in notes %}
+    {% for note in Notes %}
     <li><a href="#">{{note.header}}</a></li>
     {% endfor %}
-    {% for list in lists %}
+    {% for list in Lists %}
     <li><a href="#">{{list.header}}</a></li>
     {% endfor %}
 </ul>
