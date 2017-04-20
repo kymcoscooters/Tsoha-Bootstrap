@@ -50,6 +50,7 @@ class Note extends BaseModel {
         
         return $notes;
     }
+    
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Note WHERE id = :id LIMIT 1;');
         $query->execute(array('id' => $id));

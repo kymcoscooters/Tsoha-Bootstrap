@@ -27,3 +27,11 @@ $routes->get('/newuser', function() {
 $routes->post('/newuser', function() {
     UserController::add_new_user();
 });
+
+$routes->get('/logout', function() {
+    UserController::logoutpage();
+});
+
+$routes->post('/logout', function() {
+    UserController::logout();
+});

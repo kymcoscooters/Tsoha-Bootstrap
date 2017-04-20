@@ -20,25 +20,40 @@ class UserController extends BaseController {
         }
     }
 
-    public static function userpage() {
-        $notes = Note::all();
-        $lists = Lista::all();
-
-        View::make('/userpage.html', array('Notes' => $notes, 'Lists' => $lists));
+    public static function logout() {
+        $_SESSION['user'] = null;
+        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
     }
     
+    public static function logoutpage() {
+        View::make('logout.html');
+    }
+
+    public static function userpage() {
+        self::check_logged_in();
+        
+        $user = self::get_user_logged_in();
+        $id = $user->id;
+        $notes = Note::all_user($id);
+        $lists = Lista::all_user($id);
+
+        View::make('/userpage.html', array('Notes' => $notes, 'Lists' => $lists, 'User' => $user));
+    }
+
     public static function frontpage() {
         View::make('frontpage.html');
     }
-    
+
     public static function newuser() {
         View::make('newuser.html');
     }
-    
+
     public static function add_new_user() {
         $params = $_POST;
-        
+
         User::save(array('username' => $params['username'], 'password' => $params['password']));
+
+        View::make('addeduser.html');
     }
 
 }

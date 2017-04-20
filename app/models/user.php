@@ -43,5 +43,14 @@ class User extends BaseModel {
             return null;
         }
     }
+    
+    public function save($attributes) {
+        $query = DB::connection()->prepare('INSERT INTO Users (username, password) VALUES (:username, :password);');
+        
+        $username = $attributes['username'];
+        $password = $attributes['password'];
+        
+        $query->execute(array('username' => $username, 'password' => $password));
+    }
 }
 

@@ -28,6 +28,26 @@ class Lista extends BaseModel {
         return $lists;
     }
     
+    public static function all_user($user_id) {
+        $query = DB::connection()->prepare('SELECT * FROM List WHERE user_id = :id');
+        
+        $query->execute(array('id' => $user_id));
+        
+        $rows = $query->fetchAll();
+        
+        $lists = array();
+        
+        foreach ($rows as $row) {
+            $lists[] = new Lista(array(
+                'id' => $row['id'],
+                'user_id' => $row['user_id'],
+                'header' => $row['header']
+            ));
+        }
+        
+        return $lists;
+    }
+    
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM List WHERE id = :id;');
         $query->execute(array('id' => $id));

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Haluatko varmasti kirjautua ulos?</h1>
+<br>
+<br>
+<form method="post" action="{{base_path}}/logout">
+    <button type="submit" class="btn btn-primary">Kirjaudu ulos!</button>
+</form>
+{% endblock %}
