@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Luo uusi muistiinpano</h1>
+
+  <form method="post" action="{{base_path}}/newnote">
+    <div class="form-group">
+      <label>Otsikko</label>
+      <input type="text" class="form-control" name="header">
+    </div>
+
+    <div class="form-group">
+      <label>Teksti</label>
+      <input type="text" class="form-control" name="text">
+    </div>
+    
+      <button type="submit" class="btn btn-primary">Luo uusi muistiinpano</button>
+  </form>
+{% endblock %}

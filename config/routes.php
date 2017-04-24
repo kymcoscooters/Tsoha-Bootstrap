@@ -35,3 +35,15 @@ $routes->get('/logout', function() {
 $routes->post('/logout', function() {
     UserController::logout();
 });
+
+$routes->get('/newnote', function() {
+    UserController::newnote();
+});
+
+$routes->post('/newnote', function() {
+    UserController::add_new_note();
+});
+
+$routes->get('/note/:id', function($id) {
+    UserController::show_note($id);
+});

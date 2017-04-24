@@ -55,5 +55,27 @@ class UserController extends BaseController {
 
         View::make('addeduser.html');
     }
-
+    
+    public static function newnote() {
+        View::make('newnote.html');
+    }
+    
+    public static function add_new_note() {
+        $params = $_POST;
+        
+        $user = self::get_user_logged_in();
+        $id = $user->id;
+        
+        $note = new Note(array('user_id' => $id, 'header' => $params['header'], 'text' => $params['text']));
+        
+        $note->save();
+        
+        Redirect::to('/userpage');
+    }
+    
+    public static function show_note($id) {
+        $note = Note::find($id);
+        
+        View::make('note.html', array('note' => $note));
+    }
 }
