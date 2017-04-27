@@ -6,6 +6,7 @@ class Note extends BaseModel {
     
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_header', 'validate_text');
     }
     
     public static function all() {
@@ -76,4 +77,31 @@ class Note extends BaseModel {
         $this->id = $row['id'];
     }
     
+    public function validate_header() {
+        $errors = array();
+        
+        if ($this->header == '' || $this->header == null) {
+            $errors[] = 'Otsikko ei saa olla tyhjä!';
+        }
+        
+        if (strlen($this->header) < 3) {
+            $errors[] = 'Otsikon tulee olla vähintään 3 merkkiä pitkä!';
+        }
+        
+        return $errors;
+    }
+    
+    public function validate_text() {
+        $errors = array();
+        
+        if ($this->text == '' || $this->text == null) {
+            $errors[] = 'Teksti ei saa olla tyhjä!';
+        }
+        
+        if (strlen($this->text) < 10) {
+            $errors[] = 'Tekstin tulee olla vähintään 10 merkkiä pitkä!';
+        }
+        
+        return $errors;
+    }
 }

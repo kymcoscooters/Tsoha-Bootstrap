@@ -47,3 +47,19 @@ $routes->post('/newnote', function() {
 $routes->get('/note/:id', function($id) {
     UserController::show_note($id);
 });
+
+$routes->get('/list/:id', function($id) {
+    UserController::show_list($id);
+});
+
+$routes->post('/list/:id', function($id) {
+    UserController::add_listitem($id);
+});
+
+$routes->get('/newlist', function() {
+    UserController::newlist();
+});
+
+$routes->post('/newlist', function() {
+    UserController::add_new_list();
+});

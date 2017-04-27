@@ -6,6 +6,7 @@ class Lista extends BaseModel {
     
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validate_header');
     }
     
     public static function all() {
@@ -62,6 +63,28 @@ class Lista extends BaseModel {
         }
         
         return $list;
+    }
+    
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO list (user_id, header) VALUES (:user_id, :header) RETURNING ID;');
+        $query->execute(array('user_id' => $this->user_id, 'header' => $this->header));
+        $row = $query->fetch();
+        
+        $this->id = $row['id'];
+    }
+    
+    public function validate_header() {
+        $errors = array();
+        
+        if ($this->header == '' || $this->header == null) {
+            $errors[] = 'Otsikko ei saa olla tyhjä!';
+        }
+        
+        if (strlen($this->header) < 3) {
+            $errors[] = 'Otsikon tulee olla vähintään 3 merkkiä pitkä!';
+        }
+        
+        return $errors;
     }
 }
 
