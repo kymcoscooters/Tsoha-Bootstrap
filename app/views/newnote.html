@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Luo uusi muistiinpano</h1>
+<h1>Luo uusi muistiinpano</h1>
 
-  {% if errors %}
-    <div class="alert alert-danger">
-      <ul>
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
         {% for error in errors %}
-          <li>{{error}}</li>
+        <li>{{error}}</li>
         {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-  
-  <form method="post" action="{{base_path}}/newnote">
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/newnote">
     <div class="form-group">
-      <label>Otsikko</label>
-      <input type="text" class="form-control" name="header" value="{{attributes.header}}">
+        <label>Otsikko</label>
+        <input type="text" class="form-control" name="header" value="{{attributes.header}}">
     </div>
 
     <div class="form-group">
-      <label>Teksti</label>
-      <input type="text" class="form-control" name="text" value="{{attributes.text}}">
+        <label>Teksti</label>
+        <input type="text" class="form-control" name="text" value="{{attributes.text}}">
     </div>
-    
-      <button type="submit" class="btn btn-primary">Luo uusi muistiinpano</button>
-  </form>
+
+    <button type="submit" class="btn btn-primary">Luo uusi muistiinpano</button>
+</form>
 {% endblock %}

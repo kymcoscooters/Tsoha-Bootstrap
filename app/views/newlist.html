@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Luo uusi lista</h1>
+<h1>Luo uusi lista</h1>
 
-  {% if errors %}
-    <div class="alert alert-danger">
-      <ul>
+{% if errors %}
+<div class="alert alert-danger">
+    <ul>
         {% for error in errors %}
-          <li>{{error}}</li>
+        <li>{{error}}</li>
         {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
-  
-  <form method="post" action="{{base_path}}/newlist">
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/newlist">
     <div class="form-group">
-      <label>Otsikko</label>
-      <input type="text" class="form-control" name="header" value="{{attributes.header}}">
+        <label>Otsikko</label>
+        <input type="text" class="form-control" name="header" value="{{attributes.header}}">
     </div>
-    
-      <button type="submit" class="btn btn-primary">Luo uusi lista</button>
-  </form>
+
+    <button type="submit" class="btn btn-primary">Luo uusi lista</button>
+</form>
 {% endblock %}
