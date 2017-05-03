@@ -37,65 +37,65 @@ $routes->post('/logout', function() {
 });
 
 $routes->get('/newnote', function() {
-    UserController::newnote();
+    NoteController::newnote();
 });
 
 $routes->post('/newnote', function() {
-    UserController::add_new_note();
+    NoteController::add_new_note();
 });
 
 $routes->get('/note/:id', function($id) {
-    UserController::show_note($id);
+    NoteController::show_note($id);
 });
 
 $routes->get('/list/:id', function($id) {
-    UserController::show_list($id);
+    ListController::show_list($id);
 });
 
 $routes->post('/list/:id', function($id) {
-    UserController::add_listitem($id);
+    ListController::add_listitem($id);
 });
 
 $routes->get('/newlist', function() {
-    UserController::newlist();
+    ListController::newlist();
 });
 
 $routes->post('/newlist', function() {
-    UserController::add_new_list();
+    ListController::add_new_list();
 });
 
 $routes->post('/deletenote/:id', function($id) {
-    UserController::deletenote($id);
+    NoteController::deletenote($id);
 });
 
 $routes->get('/editnote/:id', function($id) {
-    UserController::editnotepage($id);
+    NoteController::editnotepage($id);
 });
 
 $routes->post('/editnote/:id', function($id) {
-    UserController::editnote($id);
+    NoteController::editnote($id);
 });
 
 $routes->post('/deletelist/:id', function($id) {
-    UserController::deletelist($id);
+    ListController::deletelist($id);
 });
 
 $routes->post('/listitemdone/:id', function($id) {
-    UserController::listitemdone($id);
+    ListController::listitemdone($id);
 });
 
 $routes->post('/listitemnotdone/:id', function($id) {
-    UserController::listitemnotdone($id);
+    ListController::listitemnotdone($id);
 });
 
 $routes->post('/deletelistitem/:id', function($id) {
-    UserController::deletelistitem($id);
+    ListController::deletelistitem($id);
 });
 
 $routes->get('/editlist/:id', function($id) {
-    UserController::editlistpage($id);
+    ListController::editlistpage($id);
 });
 
 $routes->post('/editlist/:id', function($id) {
-    UserController::editlist($id);
+    ListController::editlist($id);
 });
