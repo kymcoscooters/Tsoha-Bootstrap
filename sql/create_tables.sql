@@ -22,5 +22,5 @@ CREATE TABLE Listitem(
     id SERIAL PRIMARY KEY,
     list_id INTEGER REFERENCES List(id),
     text varchar(300),
-    done boolean DEFAULT FALSE 
+    done INTEGER 
 );

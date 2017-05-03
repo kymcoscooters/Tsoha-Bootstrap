@@ -84,7 +84,26 @@ class Lista extends BaseModel {
             $errors[] = 'Otsikon tulee olla vähintään 3 merkkiä pitkä!';
         }
         
+        if (strlen($this->header > 50)) {
+            $errors[] = 'Otsikko ei saa olla yli 50 merkkiä pitkä!';
+        }
         return $errors;
+    }
+    
+    public function delete($id) {
+        $listitems = Listitem::find_list($id);
+        
+        foreach ($listitems as $item) {
+            $item->delete();
+        }
+        
+        $query = DB::connection()->prepare('DELETE FROM List WHERE id = :id;');
+        $query->execute(array('id' => $id));
+    }
+    
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE List SET header = :header WHERE id = :id;');
+        $query->execute(array('header' => $this->header, 'id' => $this->id));
     }
 }
 

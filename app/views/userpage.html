@@ -13,19 +13,35 @@ ja uusi lista-nappi luo uuden listan</h4>
 <a class="btn btn-primary" href="{{base_path}}/newlist" role="button">Luo lista</a>
 <br>
 <br>
-<h5>Aiemmin luodut muistiinpanot ja listat</h5>
+<h4>Aiemmin luodut muistiinpanot ja listat</h4>
 <br>
-<h6>Muistiinpanot:</h6>
-<ul class="list-unstyled">
+<h4>Muistiinpanot:</h4>
+<table class="table table-bordered table-striped">
     {% for note in Notes %}
-    <li><a href="{{base_path}}/note/{{note.id}}">{{note.header}}</a></li>
+    <tr>
+        <td><a href="{{base_path}}/note/{{note.id}}">{{note.header}}</a></td>
+        <td>
+            <form method="post" action="{{base_path}}/deletenote/{{note.id}}">
+                <button type="submit" class="btn btn-danger">Poista</button>
+            </form>
+        </td>
+        <td><a class="btn btn-default" href="{{base_path}}/editnote/{{note.id}}">Muokkaa</a></td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 <br>
-<h6>Listat:</h6>
-<ul class="list-unstyled">
+<h4>Listat:</h4>
+<table class="table table-bordered table-striped">
     {% for list in Lists %}
-    <li><a href="{{base_path}}/list/{{list.id}}">{{list.header}}</a></li>
+    <tr>
+        <td><a href="{{base_path}}/list/{{list.id}}">{{list.header}}</a></td>
+        <td>
+            <form method="post" action="{{base_path}}/deletelist/{{list.id}}">
+                <button type="submit" class="btn btn-danger">Poista</button>
+            </form>
+        </td>
+        <td><a class="btn btn-default" href="{{base_path}}/editlist/{{list.id}}">Muokkaa</a></td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% endblock %}

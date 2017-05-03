@@ -46,7 +46,7 @@ class User extends BaseModel {
     }
     
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Users (username, password) VALUES (:username, :password);');
+        $query = DB::connection()->prepare('INSERT INTO Users (username, password) VALUES (:username, :password) RETURNING ID;');
         $query->execute(array('username' => $this->username, 'password' => $this->password));
         $row = $query->fetch();
         
@@ -64,6 +64,14 @@ class User extends BaseModel {
             $errors[] = 'Käyttäjätunnuksen tulee olla vähintään 3 merkkiä pitkä!';
         }
         
+        if ($this->username_exists()) {
+            $errors[] = 'Valitsemasi käyttäjätunnus on jo käytössä!';
+        }
+        
+        if (strlen($this->username) > 50) {
+            $errors[] = 'Käyttäjätunnus ei saa olla yli 50 merkkiä pitkä';
+        }
+        
         return $errors;
     }
     
@@ -78,6 +86,10 @@ class User extends BaseModel {
             $errors[] = 'Salasanan tulee olla vähintään 6 merkkiä pitkä!';
         }
         
+        if (strlen($this->password) > 50) {
+            $errors[] = 'Salasana ei saa olla yli 50 merkkiä pitkä';
+        }
+        
         return $errors;
     }
     
@@ -89,6 +101,19 @@ class User extends BaseModel {
         } 
         
         return $errors;
+    }
+    
+    public function username_exists() {
+        $query = DB::connection()->prepare('SELECT * FROM Users WHERE username = :username;');
+        $query->execute(array('username' => $this->username));
+        
+        $row = $query->fetch();
+        
+        if ($row) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

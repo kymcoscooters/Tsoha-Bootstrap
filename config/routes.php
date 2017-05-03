@@ -63,3 +63,39 @@ $routes->get('/newlist', function() {
 $routes->post('/newlist', function() {
     UserController::add_new_list();
 });
+
+$routes->post('/deletenote/:id', function($id) {
+    UserController::deletenote($id);
+});
+
+$routes->get('/editnote/:id', function($id) {
+    UserController::editnotepage($id);
+});
+
+$routes->post('/editnote/:id', function($id) {
+    UserController::editnote($id);
+});
+
+$routes->post('/deletelist/:id', function($id) {
+    UserController::deletelist($id);
+});
+
+$routes->post('/listitemdone/:id', function($id) {
+    UserController::listitemdone($id);
+});
+
+$routes->post('/listitemnotdone/:id', function($id) {
+    UserController::listitemnotdone($id);
+});
+
+$routes->post('/deletelistitem/:id', function($id) {
+    UserController::deletelistitem($id);
+});
+
+$routes->get('/editlist/:id', function($id) {
+    UserController::editlistpage($id);
+});
+
+$routes->post('/editlist/:id', function($id) {
+    UserController::editlist($id);
+});

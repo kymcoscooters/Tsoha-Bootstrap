@@ -77,6 +77,11 @@ class Note extends BaseModel {
         $this->id = $row['id'];
     }
     
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Note SET header = :header, text = :text WHERE id = :id;');
+        $query->execute(array('header' => $this->header, 'text' => $this->text, 'id' => $this->id));
+    }
+    
     public function validate_header() {
         $errors = array();
         
@@ -86,6 +91,10 @@ class Note extends BaseModel {
         
         if (strlen($this->header) < 3) {
             $errors[] = 'Otsikon tulee olla vähintään 3 merkkiä pitkä!';
+        }
+        
+        if (strlen($this->header) > 50) {
+            $errors[] = 'Otsikko ei saa olla yli 50 merkkiä pitkä';
         }
         
         return $errors;
@@ -102,6 +111,15 @@ class Note extends BaseModel {
             $errors[] = 'Tekstin tulee olla vähintään 10 merkkiä pitkä!';
         }
         
+        if (strlen($this->text) > 1000) {
+            $errors[] = 'Teksti ei saa olla yli 1000 merkkiä pitkä';
+        }
+        
         return $errors;
+    }
+    
+    public function delete($id) {
+        $query = DB::connection()->prepare('DELETE FROM Note WHERE id = :id;');
+        $query->execute(array('id' => $id));
     }
 }

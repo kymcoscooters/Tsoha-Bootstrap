@@ -13,11 +13,32 @@
   {% endif %}
   
 <br>
-<ul class="list-unstyled">
+<table class="table table-bordered table-striped">
     {% for listitem in listitems %}
-    <li>{{listitem.text}}</li>
+    <tr>
+        <td>{{listitem.text}}</td>
+        {% if listitem.done == 1 %}
+        <td>
+            <form method="post" action="{{base_path}}/listitemdone/{{listitem.id}}">
+                <button type="submit" class="btn btn-success">Tehty</button>
+            </form>
+        </td>
+        {% else %}
+        <td>
+            <form method="post" action="{{base_path}}/listitemnotdone/{{listitem.id}}">
+                <button type="submit" class="btn btn-danger">Ei tehty</button>
+            </form>
+        </td>
+        {% endif %}
+        <td>
+            <form method="post" action="{{base_path}}/deletelistitem/{{listitem.id}}">
+                <button type="submit" class="btn btn-danger">Poista</button>
+            </form>
+        </td>
+        <td><a class="btn btn-default" href="#">Muokkaa</a></td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 <br>
 <h4>Lisää rivi listalle</h4>
 <br>

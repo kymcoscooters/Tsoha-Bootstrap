@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
 <h1><strong>{{note.header}}</strong></h1>
 <br>
 <p>{{note.text}}</p>

@@ -10,7 +10,7 @@ class Listitem extends BaseModel {
     }
     
     public function find_list($list_id) {
-        $query = DB::connection()->prepare('SELECT * FROM Listitem WHERE list_id = :id;');
+        $query = DB::connection()->prepare('SELECT * FROM Listitem WHERE list_id = :id ORDER BY id;');
         
         $query->execute(array('id' => $list_id));
         
@@ -28,6 +28,22 @@ class Listitem extends BaseModel {
         }
         
         return $listitems;
+    }
+    
+    public static function find($id) {
+        $query = DB::connection()->prepare('SELECT * FROM Listitem WHERE id = :id;');
+        $query->execute(array('id' => $id));
+        $row = $query->fetch();
+        
+        if($row) {
+            $listitem = new Listitem( array(
+                'id' => $row['id'],
+                'list_id' => $row['list_id'],
+                'text' => $row['text'],
+            ));
+        }
+        
+        return $listitem;
     }
     
     public function save() {
@@ -49,6 +65,25 @@ class Listitem extends BaseModel {
             $errors[] = 'Rivin tulee olla vähintään 3 merkkiä pitkä!';
         }
         
+        if (strlen($this->text) > 300) {
+            $errors[] = 'Rivi ei saa olla yli 300 merkkiä pitkä';
+        }
+        
         return $errors;
     }        
+    
+    public function delete() {
+        $query = DB::connection()->prepare('DELETE FROM Listitem WHERE id = :id;');
+        $query->execute(array('id' => $this->id));
+    }
+    
+    public function done($id) {
+        $query = DB::connection()->prepare('UPDATE Listitem SET done = 1 WHERE id = :id;');
+        $query->execute(array('id' => $id));
+    }
+    
+    public function notdone($id) {
+        $query = DB::connection()->prepare('UPDATE Listitem SET done = 0 WHERE id = :id;');
+        $query->execute(array('id' => $id));
+    }
 }
