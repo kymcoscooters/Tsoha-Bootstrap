@@ -4,10 +4,6 @@ $routes->get('/', function() {
     UserController::frontpage();
 });
 
-$routes->get('/hiekkalaatikko', function() {
-    HelloWorldController::sandbox();
-});
-
 $routes->get('/userpage', function() {
     UserController::userpage();
 });
@@ -48,6 +44,18 @@ $routes->get('/note/:id', function($id) {
     NoteController::show_note($id);
 });
 
+$routes->post('/deletenote/:id', function($id) {
+    NoteController::deletenote($id);
+});
+
+$routes->get('/editnote/:id', function($id) {
+    NoteController::editnotepage($id);
+});
+
+$routes->post('/editnote/:id', function($id) {
+    NoteController::editnote($id);
+});
+
 $routes->get('/list/:id', function($id) {
     ListController::show_list($id);
 });
@@ -64,20 +72,16 @@ $routes->post('/newlist', function() {
     ListController::add_new_list();
 });
 
-$routes->post('/deletenote/:id', function($id) {
-    NoteController::deletenote($id);
-});
-
-$routes->get('/editnote/:id', function($id) {
-    NoteController::editnotepage($id);
-});
-
-$routes->post('/editnote/:id', function($id) {
-    NoteController::editnote($id);
-});
-
 $routes->post('/deletelist/:id', function($id) {
     ListController::deletelist($id);
+});
+
+$routes->get('/editlist/:id', function($id) {
+    ListController::editlistpage($id);
+});
+
+$routes->post('/editlist/:id', function($id) {
+    ListController::editlist($id);
 });
 
 $routes->post('/listitemdone/:id', function($id) {
@@ -90,12 +94,4 @@ $routes->post('/listitemnotdone/:id', function($id) {
 
 $routes->post('/deletelistitem/:id', function($id) {
     ListController::deletelistitem($id);
-});
-
-$routes->get('/editlist/:id', function($id) {
-    ListController::editlistpage($id);
-});
-
-$routes->post('/editlist/:id', function($id) {
-    ListController::editlist($id);
 });
