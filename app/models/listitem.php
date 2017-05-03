@@ -11,9 +11,7 @@ class Listitem extends BaseModel {
     
     public function find_list($list_id) {
         $query = DB::connection()->prepare('SELECT * FROM Listitem WHERE list_id = :id ORDER BY id;');
-        
         $query->execute(array('id' => $list_id));
-        
         $rows = $query->fetchAll();
         
         $listitems = array();

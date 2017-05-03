@@ -10,11 +10,8 @@ class Note extends BaseModel {
     }
     
     public static function all() {
-        
         $query = DB::connection()->prepare('SELECT * FROM Note;');
-        
         $query->execute();
-        
         $rows = $query->fetchAll();
         
         $notes = array();
@@ -33,9 +30,7 @@ class Note extends BaseModel {
     
     public static function all_user($user_id) {
         $query = DB::connection()->prepare('SELECT * FROM Note WHERE user_id = :id');
-        
         $query->execute(array('id' => $user_id));
-        
         $rows = $query->fetchAll();
         
         $notes = array();

@@ -11,9 +11,7 @@ class Lista extends BaseModel {
     
     public static function all() {
         $query = DB::connection()->prepare('SELECT * FROM List;');
-        
         $query->execute();
-        
         $rows = $query->fetchAll();
         
         $lists = array();
@@ -31,9 +29,7 @@ class Lista extends BaseModel {
     
     public static function all_user($user_id) {
         $query = DB::connection()->prepare('SELECT * FROM List WHERE user_id = :id');
-        
         $query->execute(array('id' => $user_id));
-        
         $rows = $query->fetchAll();
         
         $lists = array();
@@ -87,6 +83,7 @@ class Lista extends BaseModel {
         if (strlen($this->header > 50)) {
             $errors[] = 'Otsikko ei saa olla yli 50 merkkiä pitkä!';
         }
+        
         return $errors;
     }
     
