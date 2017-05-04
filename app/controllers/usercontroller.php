@@ -3,7 +3,7 @@
 class UserController extends BaseController {
 
     public static function login() {
-        View::make('login.html');
+        View::make('user/login.html');
     }
 
     public static function handle_login() {
@@ -12,7 +12,7 @@ class UserController extends BaseController {
         $user = User::authenticate($params['username'], $params['password']);
 
         if (!$user) {
-            View::make('login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
+            View::make('user/login.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
         } else {
             $_SESSION['user'] = $user->id;
 
@@ -28,7 +28,7 @@ class UserController extends BaseController {
     public static function logoutpage() {
         self::check_logged_in();
         
-        View::make('logout.html');
+        View::make('user/logout.html');
     }
 
     public static function userpage() {
@@ -39,7 +39,7 @@ class UserController extends BaseController {
         $notes = Note::all_user($id);
         $lists = Lista::all_user($id);
 
-        View::make('/userpage.html', array('Notes' => $notes, 'Lists' => $lists, 'User' => $user));
+        View::make('user/userpage.html', array('Notes' => $notes, 'Lists' => $lists, 'User' => $user));
     }
 
     public static function frontpage() {
@@ -47,7 +47,7 @@ class UserController extends BaseController {
     }
 
     public static function newuser() {
-        View::make('newuser.html');
+        View::make('user/newuser.html');
     }
 
     public static function add_new_user() {
@@ -64,9 +64,9 @@ class UserController extends BaseController {
         
         if (count($errors) == 0) {
             $user->save();
-            View::make('addeduser.html');
+            View::make('user/addeduser.html');
         } else {
-            View::make('newuser.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('user/newuser.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 }

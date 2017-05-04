@@ -6,14 +6,14 @@ class ListController extends BaseController {
         $list = Lista::find($id);
         $listitems = Listitem::find_list($id);
         
-        View::make('list.html', array('list' => $list, 'listitems' => $listitems));
+        View::make('list/list.html', array('list' => $list, 'listitems' => $listitems));
         
     }
     
     public static function newlist() {
         self::check_logged_in();
         
-        View::make('newlist.html');
+        View::make('list/newlist.html');
     }
     
     public static function add_new_list() {
@@ -35,7 +35,7 @@ class ListController extends BaseController {
             $listid = $list->id;
             Redirect::to('/list/' . $listid);
         } else {
-            View::make('newlist.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('list/newlist.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
     
@@ -58,7 +58,7 @@ class ListController extends BaseController {
         } else {
             $list = Lista::find($id);
             $listitems = Listitem::find_list($id);
-            View::make('list.html', array('errors' => $errors, 'attributes' => $attributes, 'list' => $list, 'listitems' => $listitems));
+            View::make('list/list.html', array('errors' => $errors, 'attributes' => $attributes, 'list' => $list, 'listitems' => $listitems));
         }
         
     }
@@ -93,7 +93,7 @@ class ListController extends BaseController {
     
     public function editlistpage($id) {
         $list = Lista::find($id);
-        View::make('editlist.html', array('list' => $list));
+        View::make('list/editlist.html', array('list' => $list));
     }
     
     public function editlist($id) {
@@ -112,7 +112,7 @@ class ListController extends BaseController {
         $errors = $list->errors();
         
         if(count($errors) > 0) {
-            View::make('/editlist/' . $id, array('errors' => $errors, 'list' => $list));
+            View::make('list/editlist', array('errors' => $errors, 'list' => $list));
         } else {
             $list->update();
             Redirect::to('/list/' . $id, array('message' => 'Listaa muokattiin onnistuneesti'));

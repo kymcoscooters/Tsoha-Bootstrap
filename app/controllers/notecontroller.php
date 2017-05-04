@@ -5,7 +5,7 @@ class NoteController extends BaseController {
     public static function newnote() {
         self::check_logged_in();
         
-        View::make('newnote.html');
+        View::make('note/newnote.html');
     }
     
     public static function add_new_note() {
@@ -27,14 +27,14 @@ class NoteController extends BaseController {
             $note->save();
             Redirect::to('/userpage');
         } else {
-            View::make('newnote.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('note/newnote.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
     
     public static function show_note($id) {
         $note = Note::find($id);
         
-        View::make('note.html', array('note' => $note));
+        View::make('note/note.html', array('note' => $note));
     }
     
     public function deletenote($id) {
@@ -45,7 +45,7 @@ class NoteController extends BaseController {
     
     public function editnotepage($id) {
         $note = Note::find($id);
-        View::make('editnote.html', array('note' => $note));
+        View::make('note/editnote.html', array('note' => $note));
     }
     
     public function editnote($id) {
@@ -65,7 +65,7 @@ class NoteController extends BaseController {
         $errors = $note->errors();
         
         if(count($errors) > 0) {
-            View::make('/editnote/' . $id, array('errors' => $errors, 'note' => $note));
+            View::make('note/editnote.html', array('errors' => $errors, 'note' => $note));
         } else {
             $note->update();
             Redirect::to('/note/' . $id, array('message' => 'Muistiinpanoa muokattiin onnistuneesti'));
