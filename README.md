@@ -3,8 +3,8 @@
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](https://holmbrob.users.cs.helsinki.fi/tsoha)
-* [Linkki dokumentaatiooni](https://github.com/kymcoscooters/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
-* [Linkki muistioon](https://holmbrob.users.cs.helsinki.fi/tsoha)
+* [Linkki dokumentaatiooni](https://github.com/kymcoscooters/Tsoha-Bootstrap/blob/master/doc/Tsoha-dokumentaatio.pdf)
+
 
 
 ## Työn aihe
